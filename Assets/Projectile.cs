@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<ITakeDamage>().TakeDamage();
-        ProjectilePool.Instance.EnqueueOne(gameObject);
+        bool tookDamage = other.GetComponent<ITakeDamage>().TakeDamage(gameObject.tag);
+        if (tookDamage) ProjectilePool.Instance.EnqueueOne(gameObject);
     }
 }

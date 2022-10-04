@@ -1,4 +1,4 @@
 public interface ITakeDamage 
 {
-    void TakeDamage();
+    bool TakeDamage(string fromTag);
 }
