@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, ITakeDamage
     {
         GameObject projectile = ProjectilePool.Instance.GetProjectile();
         projectile.transform.position = transform.position;
-        projectile.transform.up = -transform.up;
+        projectile.transform.up = Vector3.right;
         projectile.tag = "EnemyProjectile";
     }
 

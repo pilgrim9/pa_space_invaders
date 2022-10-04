@@ -23,33 +23,23 @@ public class EnemyGroup : MonoBehaviour
             }
         }
         // TODO: Move these to update
-        StartCoroutine(nameof(Movement));
-        // StartCoroutine(nameof(Shoot));
+        InvokeRepeating(nameof(Movement), movementIntervals, movementIntervals);
+        InvokeRepeating(nameof(Shoot), fireRate, fireRate);
     }
 
-    private IEnumerator Movement()
+    private void Movement()
     {
-        while (true)
+        transform.position += Vector3.right * horizontalSpeed;
+        if (transform.position.x >= rightBound || transform.position.x <= leftBound)
         {
-            transform.position += Vector3.right * horizontalSpeed;
-            yield return new WaitForSeconds(movementIntervals);
-            if (transform.position.x >= rightBound || transform.position.x <= leftBound)
-            {
-                horizontalSpeed *= -1;
-                transform.position += Vector3.down * 0.5f;
-                yield return new WaitForSeconds(movementIntervals);
-            }
-        }
+            horizontalSpeed *= -1;
+            transform.position += Vector3.down * 0.5f;
+        } 
     }
-
-    private IEnumerator Shoot()
+    
+    private void Shoot()
     {
-        while (true)
-        {
-            Transform chosenEnemy = transform.GetChild(UnityEngine.Random.Range(0, transform.childCount));
-            chosenEnemy.GetComponent<Enemy>().Shoot();
-            yield return new WaitForSeconds(fireRate);
-        }
-
+        Transform chosenEnemy = transform.GetChild(UnityEngine.Random.Range(0, transform.childCount));
+        chosenEnemy.GetComponent<Enemy>().Shoot();
     }
 }
