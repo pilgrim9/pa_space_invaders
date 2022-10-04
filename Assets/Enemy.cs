@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour, ITakeDamage
 {
@@ -12,11 +13,13 @@ public class Enemy : MonoBehaviour, ITakeDamage
         projectile.tag = "EnemyProjectile";
     }
 
+    public UnityEvent onDeath;
     public bool TakeDamage(string fromTag)
     {
         if (fromTag == "PlayerProjectile")
         {
             Destroy(gameObject);
+            onDeath.Invoke();
             return true;
         }
         return false;
