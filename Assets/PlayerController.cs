@@ -1,12 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 10.0f;
-    public LayerMask playerProjectileMask;
+    public float shotCooldown = 0.5f;
+    private bool canShoot = true;
     private void Update()
     {
         Move(Input.GetAxis("Horizontal"));
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
 
     void Move(float x)
@@ -16,10 +22,16 @@ public class PlayerController : MonoBehaviour
     
     void Shoot()
     {
+        StartCoroutine(nameof(ShootCooldown));
         GameObject projectile = ProjectilePool.Instance.GetProjectile();
         projectile.transform.position = transform.position;
         projectile.transform.rotation = transform.rotation;
-        projectile.layer = playerProjectileMask;
         projectile.tag = "PlayerProjectile";
+    }
+    IEnumerator ShootCooldown()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shotCooldown);
+        canShoot = true;
     }
 }

@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 347014806}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,9 +187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  playerProjectileMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!61 &347014802
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -316,7 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 3
   currentHP: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 2091585700}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +574,7 @@ GameObject:
   - component: {fileID: 2091585697}
   - component: {fileID: 2091585699}
   - component: {fileID: 2091585698}
+  - component: {fileID: 2091585700}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -641,6 +639,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091585696}
   m_CullTransparentMesh: 1
+--- !u!114 &2091585700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091585696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce9e535c3280c34e86ecb05f8892ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2092274989
 GameObject:
   m_ObjectHideFlags: 0

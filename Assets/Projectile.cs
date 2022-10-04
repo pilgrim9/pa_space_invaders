@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public float speed = 20f;
     private void Update()
     {
-        transform.Translate(Time.deltaTime * transform.up);
+        transform.Translate(speed* Time.deltaTime * transform.up );
     }
 
     private void OnTriggerEnter(Collider other)
