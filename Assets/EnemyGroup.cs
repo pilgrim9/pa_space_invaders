@@ -13,7 +13,6 @@ public class EnemyGroup : MonoBehaviour
     public float leftBound = -9;
     public float rightBound = 9;
     
-
     private void Start()
     {
         for (int row = 0; row < rows; row++)
@@ -23,6 +22,7 @@ public class EnemyGroup : MonoBehaviour
                 Instantiate(enemyPrefab, new Vector3(column, row, 0)+transform.position, Quaternion.identity, transform);
             }
         }
+        // TODO: Move these to update
         StartCoroutine(nameof(Movement));
         // StartCoroutine(nameof(Shoot));
     }
@@ -40,5 +40,16 @@ public class EnemyGroup : MonoBehaviour
                 yield return new WaitForSeconds(movementIntervals);
             }
         }
+    }
+
+    private IEnumerator Shoot()
+    {
+        while (true)
+        {
+            Transform chosenEnemy = transform.GetChild(UnityEngine.Random.Range(0, transform.childCount));
+            chosenEnemy.GetComponent<Enemy>().Shoot();
+            yield return new WaitForSeconds(fireRate);
+        }
+
     }
 }

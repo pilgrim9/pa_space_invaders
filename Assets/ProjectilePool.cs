@@ -26,19 +26,15 @@ public class ProjectilePool : MonoBehaviour
     void AddNewProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab);
-        EnqueueOne(projectile);
+        ReturnToPool(projectile);
     }
-    public void EnqueueOne(GameObject projectile)
+    public void ReturnToPool(GameObject projectile)
     {
         projectile.SetActive(false);
         projectilePool.Enqueue(projectile);
     }
     public GameObject GetProjectile()
     {
-        if (!projectilePool.Any())
-        {
-            AddNewProjectile();
-        }
         GameObject projectile = projectilePool.Dequeue();
         projectile.SetActive(true);
         return projectile;
