@@ -9,7 +9,7 @@ public class PlayerHP : MonoBehaviour, ITakeDamage
     private void Start()
     {
         currentHP = maxHP;
-        healthBar.SetMaxHealth(maxHP);
+        healthBar.SetHealth(maxHP);
     }
 
     public bool TakeDamage(string fromTag)

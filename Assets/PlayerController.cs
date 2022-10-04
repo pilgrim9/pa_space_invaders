@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     
     void Shoot()
     {
+        if (!canShoot) return;
         StartCoroutine(nameof(ShootCooldown));
         GameObject projectile = ProjectilePool.Instance.GetProjectile();
         projectile.transform.position = transform.position;
